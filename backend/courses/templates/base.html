@@ -8,7 +8,7 @@
 </head>
 <body>
   <div id="header">
-    <a href="/course/mine/" class="logo">Edu App</a>
+    <a href="/" class="logo">Edu App</a>
     <ul class="menu">
       {% if request.user.is_authenticated %}
         <li><a href="{% url "logout" %}">Log out</a></li>
