@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login
 from braces.views import LoginRequiredMixin
 from django.views.generic.list import ListView
 from courses.models import Course
+from django.views.generic.detail import DetailView
 
 from .forms import CourseEnrollForm
 
@@ -13,7 +14,7 @@ from .forms import CourseEnrollForm
 class StudentRegistrationView(CreateView):
     template_name = 'students/student/registration.html'
     form_class = UserCreationForm
-    success_url = reverse_lazy('student_course_list')
+    success_url = reverse_lazy('students:student_course_list')
 
     def form_valid(self, form):
         result = super(StudentRegistrationView, self).form_valid(form)
@@ -33,7 +34,7 @@ class StudentEnrollCourseView(LoginRequiredMixin, FormView):
         return super(StudentEnrollCourseView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('student_course_detail', args=[self.course.id])
+        return reverse_lazy('students:student_course_detail', args=[self.course.id])
 
 
 class StudentCourseListView(LoginRequiredMixin, ListView):
@@ -45,3 +46,22 @@ class StudentCourseListView(LoginRequiredMixin, ListView):
         return qs.filter(students__in=[self.request.user])
 
 
+class StudentCourseDetailView(DetailView):
+    model = Course
+    template_name = 'students/course/detail.html'
+
+    def get_queryset(self):
+        qs = super(StudentCourseDetailView, self).get_queryset()
+        return qs.filter(students__in=[self.request.user])
+
+    def get_context_data(self, **kwargs):
+        context = super(StudentCourseDetailView, self).get_context_data(**kwargs)
+
+        #Pobranie obiektu kursu
+        course = self.get_object()
+        if 'module_id' in self.kwargs:
+            context['module'] = course.modules.get(id=self.kwargs['module_id'])
+        else:
+            context['module'] = course.modules.all()
+
+        return context
