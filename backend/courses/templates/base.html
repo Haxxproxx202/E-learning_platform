@@ -8,12 +8,14 @@
 </head>
 <body>
   <div id="header">
-    <a href="/" class="logo">Edu App</a>
+    <a href="/" class="logo">Edu Appxxxxx</a>
     <ul class="menu">
       {% if request.user.is_authenticated %}
-        <li><a href="{% url "logout" %}">Log out</a></li>
+          <p>{{ request.user.username }}</p>
+          <p>tu ma dzialac</p>
+        <li><a href="{% url "logout" %}">Log out - zalogowany</a></li>
       {% else %}
-        <li><a href="{% url "login" %}">Log in</a></li>
+        <li><a href="{% url "login" %}">Log in -  niezalogowany</a></li>
       {% endif %}
     </ul>
   </div>
