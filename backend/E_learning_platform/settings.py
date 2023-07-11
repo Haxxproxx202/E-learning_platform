@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'embed_video',
     'memcache_status',
     'rest_framework',
+    'channels',
 ]
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
@@ -157,3 +158,5 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+
+ASGI_APPLICATION = 'E_learning_platform.asgi.application'
