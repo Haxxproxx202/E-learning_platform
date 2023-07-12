@@ -32,6 +32,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
+
+    'chat',
     'courses.apps.CoursesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,12 +43,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'students.apps.StudentsConfig',
-    'chat',
+
     # 3rd apps
     'embed_video',
     'memcache_status',
     'rest_framework',
-    'channels',
 ]
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
@@ -158,5 +160,4 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
-
-ASGI_APPLICATION = 'E_learning_platform.asgi.application'
+ASGI_APPLICATION = "E_learning_platform.routing.application"
