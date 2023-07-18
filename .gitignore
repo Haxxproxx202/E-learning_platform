@@ -120,6 +120,7 @@ venv.bak/
 *.sublime-workspace
 *.sublime-project
 
+static/
 # sftp configuration file
 sftp-config.json
 
