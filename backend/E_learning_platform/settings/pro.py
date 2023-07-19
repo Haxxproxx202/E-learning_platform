@@ -22,3 +22,6 @@ DATABASES = {
         'HOST': '127.0.0.1',
     }
 }
+
+SECURE_SSL_REDIRECT = True
+CSRF_COOKIE_SECURE = True
