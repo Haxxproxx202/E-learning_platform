@@ -11,7 +11,7 @@ ADMINS = (
     ('PMO', 'pjanecki88@gmail.com'),
 )
 
-ALLOWED_HOSTS = ['totututu.com', 'www.totututu.com']
+ALLOWED_HOSTS = ['.totututu.com']
 
 DATABASES = {
     'default': {
